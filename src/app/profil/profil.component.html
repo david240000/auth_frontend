@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Profil</h1>
+                </div>
+                <form>
+                    <form #profilForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email cím</label>
+                          <input type="email" class="form-control" id="Email"  name="email" id="email" [(ngModel)]="user.email" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Teljes név</label>
+                            <input type="text" class="form-control" id="fullName" name="fullName" [(ngModel)]="user.fullName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Település</label>
+                            <input type="text" class="form-control" id="Location" name="Location" [(ngModel)]="user.location">
+                        </div>
+                        <div>
+                            <label for="exampleInputEmail1" class="form-label">Születés ideje</label>
+                            <input type="date" class="form-control" id="Birty Date" name="birthDate" [(ngModel)]="user.birthDate">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Módosítások mentése</button>
+                      </form>
+                </form>
+
+                <h3>Új jelszó</h3>
+                <form #newPasswordForm="ngForm" (ngSubmit)="onNewPassword()" novalidate>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Jelszó</label>
+                        <input type="password" class="form-control" name="password" id="password" [(ngModel)]="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Jelszó modosítás</button>
+                </form>
+
+                
+                <form #newPasswordForm="ngForm" (ngSubmit)="onDelete()" novalidate>
+                    <h3>Felhasznló törlése</h3>
+                    <button type="submit" class="btn btn-primary">Törlés</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
