@@ -28,7 +28,6 @@ export class ServiceService {
   }
 
   getProfile(token:string){
-    console.log(token);
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
     return this._http.get<any>(this._profile_url, {headers:headers_object})
   }

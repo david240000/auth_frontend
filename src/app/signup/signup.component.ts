@@ -20,14 +20,13 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.user)
     if(this.user.email == '' || this.user.password==''){
       this.error='Fill the email and password field first'
     }else{
     this._service.signUp(this.user)
     .subscribe(
       data => {
-        console.log("Siker ", data)
+        //console.log("Siker ", data)
         this.router.navigate(['/login'])},
         error => {
           this.error = error.error.message;

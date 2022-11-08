@@ -22,11 +22,12 @@ export class LoginComponent implements OnInit {
     this._service.login(this.user)
     .subscribe(
       data => {
-        console.log("Siker ", data.access_token)
+        //console.log("Siker ", data.access_token)
         this.router.navigate(['/profil/',{access_token: data.access_token}])},
         error => {
           this.error = error.error.message;
-          console.error(error)}
+          //console.error(error)
+        }
     )
   }
 

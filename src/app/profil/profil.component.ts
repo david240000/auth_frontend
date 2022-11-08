@@ -15,9 +15,12 @@ export class ProfilComponent implements OnInit {
   //users:any;
   loading= true;
   error:any;
+    
+  
   
 
   public user:SignUpUser = new SignUpUser('','','','', new Date);
+  public updateUser =  new SignUpUser('','','','', new Date);
   public token:string='';
   public formattedDate:string|null=null;
   public password: string='';
@@ -39,12 +42,16 @@ export class ProfilComponent implements OnInit {
         },
       }})
       .valueChanges.subscribe((result:any) => {
-        console.log(result.data.user.birthDate)
         this.user = result?.data?.user;
         this.birthDate = datepipe.transform(this.user.birthDate, 'yyyy-MM-dd')
+        this.updateUser.email = this.user.email;
+        this.updateUser.fullName = this.user.fullName;
+        this.updateUser.location = this.user.location;
+        this.updateUser.birthDate = this.birthDate;
         this.loading = result.loading;
         this.error = result.error;
       })
+      
 
     /*this.route.params
       .subscribe(params =>{
@@ -60,14 +67,16 @@ export class ProfilComponent implements OnInit {
   }
 
   onSubmit(){
-    delete this.user.password;
-    this._service.update(this.token,this.user)
+    delete this.updateUser.password;
+    this.updateUser.birthDate = this.birthDate;
+    this._service.update(this.token, this.updateUser)
       .subscribe(
       data => {
-      console.log("Siker ", data)
+      //console.log("Siker ", data)
       this.ngOnInit},
       error => console.error(error)
   )
+    window.location.reload();
 
   }
 
@@ -75,7 +84,7 @@ export class ProfilComponent implements OnInit {
     this._service.changePassword(this.token,this.password)
       .subscribe(
       data => {
-      console.log("Siker ", data)
+      //console.log("Siker ", data)
       this.ngOnInit},
       error => console.error(error)
   )
@@ -86,7 +95,7 @@ export class ProfilComponent implements OnInit {
     this._service.delete(this.token)
     .subscribe(
       data => {
-        console.log("Siker ", data)
+        //console.log("Siker ", data)
         this.router.navigate(['/login'])},
         error => console.error(error)
     )
